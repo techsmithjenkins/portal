@@ -3,33 +3,35 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class Login</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body
-  class="bg-gradient-to-r from-blue-300 via-blue-200 to-blue-100 min-h-screen flex items-center justify-center dark:bg-gradient-to-r dark:from-blue-900 dark:via-gray-800 dark:to-gray-700">
-  <div class="login-container bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-8 w-full max-w-md">
+  class="m-0 p-4 bg-gradient-to-r from-blue-300 via-blue-200 to-blue-100 min-h-screen flex items-center justify-center dark:bg-gradient-to-r dark:from-blue-900 dark:via-gray-800 dark:to-gray-700">
+  
+  <div class="login-container bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-6 sm:p-8 w-full max-w-md mx-auto">
     <h2 class="text-2xl font-bold text-blue-600 dark:text-blue-300 mb-6 text-center">Class Portal Login</h2>
 
     <input type="text" id="indexNumber" placeholder="Index Number"
-      class="w-full px-4 py-2 mb-4 border border-blue-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 dark:bg-gray-800 dark:text-white">
+      class="w-full px-4 py-3 mb-4 border border-blue-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 dark:bg-gray-800 dark:text-white text-base">
 
     <input type="password" id="password" placeholder="Password"
-      class="w-full px-4 py-2 mb-4 border border-blue-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 dark:bg-gray-800 dark:text-white">
+      class="w-full px-4 py-3 mb-6 border border-blue-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 dark:bg-gray-800 dark:text-white text-base">
 
     <button id="loginBtn"
-      class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg shadow transition dark:bg-blue-700 dark:hover:bg-blue-800">
+      class="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow transition dark:bg-blue-700 dark:hover:bg-blue-800 mb-3 text-base touch-manipulation">
       Login
     </button>
 
     <button id="forgotBtn"
-      class="w-full mt-2 bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 rounded-lg shadow transition dark:bg-gray-700 dark:hover:bg-gray-800">
+      class="w-full bg-gray-400 hover:bg-gray-500 active:bg-gray-600 text-white font-semibold py-3 rounded-lg shadow transition dark:bg-gray-700 dark:hover:bg-gray-800 text-base touch-manipulation">
       Forgot Password
     </button>
 
-    <p id="errorMsg" class="text-red-500 dark:text-red-400 text-sm mt-3 text-center"></p>
+    <p id="errorMsg" class="text-red-500 dark:text-red-400 text-sm mt-4 text-center"></p>
   </div>
 
   <!-- Firebase SDKs -->
