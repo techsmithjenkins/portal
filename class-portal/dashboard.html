@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="css/style.css" rel="stylesheet">
@@ -11,25 +12,36 @@
 <body
   class="bg-gradient-to-r from-blue-100 via-blue-50 to-white min-h-screen dark:bg-gradient-to-r dark:from-blue-900 dark:via-gray-800 dark:to-gray-700">
   <nav
-    class="bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow dark:bg-gray-900 dark:text-blue-200">
-    <h1 class="text-xl font-bold">Class Portal</h1>
-    <button id="logoutBtn" class="bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded-lg">Logout</button>
+    class="bg-blue-600 text-white px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center shadow dark:bg-gray-900 dark:text-blue-200 gap-2 sm:gap-0">
+    <h1 class="text-lg sm:text-xl font-bold">Class Portal</h1>
+    <button id="logoutBtn" 
+      class="bg-blue-500 hover:bg-blue-700 px-3 sm:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-base self-end sm:self-auto">
+      Logout
+    </button>
   </nav>
 
-  <div class="container m-10 max-w-4xl p-4 dark:bg-gray-900 dark:text-white rounded-xl">
-    <section class="mb-10">
-      <h2 class="text-3xl font-bold text-blue-700 dark:text-blue-300 mb-6">📢 Announcements</h2>
-      <div id="announcementsList" class="space-y-4">
-        <p class="text-gray-500 dark:text-gray-400">Loading announcements...</p>
-      </div>
-    </section>
+  <div class="container mx-auto mt-4 sm:mt-6 lg:mt-10 max-w-4xl px-4 sm:px-6 pb-8">
+    <div class="bg-white dark:bg-gray-900 dark:text-white rounded-xl shadow-lg p-4 sm:p-6">
+      <section class="mb-8 sm:mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-blue-700 dark:text-blue-300 mb-4 sm:mb-6 flex items-center gap-2">
+          <span class="text-lg sm:text-2xl">📢</span>
+          <span>Announcements</span>
+        </h2>
+        <div id="announcementsList" class="space-y-3 sm:space-y-4">
+          <p class="text-gray-500 dark:text-gray-400 text-sm sm:text-base">Loading announcements...</p>
+        </div>
+      </section>
 
-    <section>
-      <h2 class="text-3xl font-bold text-blue-700 dark:text-blue-300 mb-6">📂 Files</h2>
-      <ul id="filesList" class="space-y-2">
-        <p class="text-gray-500 dark:text-gray-400">Loading files...</p>
-      </ul>
-    </section>
+      <section>
+        <h2 class="text-2xl sm:text-3xl font-bold text-blue-700 dark:text-blue-300 mb-4 sm:mb-6 flex items-center gap-2">
+          <span class="text-lg sm:text-2xl">📂</span>
+          <span>Files</span>
+        </h2>
+        <ul id="filesList" class="space-y-2 sm:space-y-3">
+          <p class="text-gray-500 dark:text-gray-400 text-sm sm:text-base">Loading files...</p>
+        </ul>
+      </section>
+    </div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -37,7 +49,123 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
 
-  <script src="js/app.js"></script>
+  <script>
+    // Enhanced app.js with mobile-optimized announcements and files display
+    // Firebase Init (same as before)
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT_ID.appspot.com",
+        messagingSenderId: "SENDER_ID",
+        appId: "APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+            const isOpen = !mobileMenu.classList.contains("hidden");
+            
+            // Update button icon
+            const svg = mobileMenuBtn.querySelector("svg path");
+            if (isOpen) {
+                svg.setAttribute("d", "M6 18L18 6M6 6l12 12"); // X icon
+            } else {
+                svg.setAttribute("d", "M4 6h16M4 12h16M4 18h16"); // Hamburger icon
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add("hidden");
+                const svg = mobileMenuBtn.querySelector("svg path");
+                svg.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+            }
+        });
+    }
+
+    // Logout functionality (desktop and mobile)
+    const logoutBtn = document.getElementById("logoutBtn");
+    const logoutBtnMobile = document.getElementById("logoutBtnMobile");
+    
+    const handleLogout = async () => {
+        try {
+            await auth.signOut();
+            window.location.href = "index.html";
+        } catch (error) {
+            console.error("Logout error:", error);
+        }
+    };
+
+    if (logoutBtn) logoutBtn.addEventListener("click", handleLogout);
+    if (logoutBtnMobile) logoutBtnMobile.addEventListener("click", handleLogout);
+
+    // Mobile-optimized announcements display
+    const announcementsList = document.getElementById("announcementsList");
+    if (announcementsList) {
+        db.collection("announcements").orderBy("createdAt", "desc").onSnapshot(snapshot => {
+            announcementsList.innerHTML = "";
+            if (snapshot.empty) {
+                announcementsList.innerHTML = "<p class='text-gray-500 text-sm sm:text-base'>No announcements yet.</p>";
+                return;
+            }
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const date = data.createdAt?.toDate ? data.createdAt.toDate().toLocaleString() : '';
+                const card = `
+                    <div class="bg-white shadow-md rounded-xl p-4 sm:p-5 border border-blue-100">
+                      <h3 class="text-lg sm:text-xl font-semibold text-blue-600 mb-2 break-words">${data.title}</h3>
+                      <p class="text-gray-700 mb-2 text-sm sm:text-base break-words leading-relaxed">${data.content}</p>
+                      <p class="text-xs sm:text-sm text-gray-400">Posted by ${data.postedBy} • ${date}</p>
+                    </div>`;
+                announcementsList.innerHTML += card;
+            });
+        });
+    }
+
+    // Mobile-optimized files display
+    const filesList = document.getElementById("filesList");
+    if (filesList) {
+        const storageRef = storage.ref("files/");
+        storageRef.listAll().then(res => {
+            filesList.innerHTML = "";
+            if (res.items.length === 0) {
+                filesList.innerHTML = "<p class='text-gray-500 text-sm sm:text-base'>No files uploaded yet.</p>";
+                return;
+            }
+            res.items.forEach(itemRef => {
+                itemRef.getDownloadURL().then(url => {
+                    const fileName = itemRef.name;
+                    const truncatedName = fileName.length > 25 ? fileName.substring(0, 22) + "..." : fileName;
+                    
+                    const li = `
+                    <li class="bg-white border border-blue-100 shadow-sm rounded-lg p-3 sm:p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
+                      <span class="text-gray-700 text-sm sm:text-base break-all sm:break-normal" title="${fileName}">
+                        <span class="sm:hidden">${truncatedName}</span>
+                        <span class="hidden sm:inline">${fileName}</span>
+                      </span>
+                      <a href="${url}" target="_blank" 
+                         class="text-blue-600 hover:text-blue-800 font-semibold text-sm sm:text-base px-3 py-1 bg-blue-50 rounded-md hover:bg-blue-100 transition-colors self-end sm:self-auto">
+                        Download
+                      </a>
+                    </li>`;
+                    filesList.innerHTML += li;
+                });
+            });
+        }).catch(err => {
+            filesList.innerHTML = `<p class='text-red-500 text-sm sm:text-base'>Error loading files: ${err.message}</p>`;
+        });
+    }
+  </script>
 </body>
 
 </html>
