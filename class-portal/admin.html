@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="css/style.css" rel="stylesheet">
@@ -11,32 +12,52 @@
 <body
   class="bg-gradient-to-r from-blue-100 via-blue-50 to-white min-h-screen dark:bg-gradient-to-r dark:from-blue-900 dark:via-gray-800 dark:to-gray-700">
   <nav
-    class="bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow dark:bg-gray-900 dark:text-blue-200">
-    <h1 class="text-xl font-bold">Class Portal Admin</h1>
-    <button id="logoutBtn" class="bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded-lg">Logout</button>
+    class="bg-blue-600 text-white px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center shadow dark:bg-gray-900 dark:text-blue-200 gap-2 sm:gap-0">
+    <h1 class="text-lg sm:text-xl font-bold">Class Portal Admin</h1>
+    <button id="logoutBtn" 
+      class="bg-blue-500 hover:bg-blue-700 px-3 sm:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-base self-end sm:self-auto">
+      Logout
+    </button>
   </nav>
 
-  <div class="container mx-auto mt-4 mb-4 max-w-4xl px-4 dark:bg-gray-900 dark:text-white rounded-xl">
-    <div class="bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-6 mb-8">
-      <h2 class="text-2xl font-bold text-blue-600 dark:text-blue-300 mb-4">Post Announcement</h2>
-      <input type="text" id="announcementTitle" placeholder="Title"
-        class="w-full px-4 py-2 mb-4 border border-blue-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 dark:bg-gray-800 dark:text-white">
-      <textarea id="announcementContent" placeholder="Write your announcement..."
-        class="w-full px-4 py-2 mb-4 border border-blue-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 dark:bg-gray-800 dark:text-white"></textarea>
-      <button id="postAnnouncementBtn"
-        class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg shadow transition dark:bg-blue-700 dark:hover:bg-blue-800">Post
-        Announcement</button>
-      <p id="announceMsg" class="text-green-600 dark:text-green-400 text-sm mt-3"></p>
+  <div class="container mx-auto mt-4 sm:mt-6 mb-4 max-w-4xl px-4 sm:px-6">
+    <!-- Announcements Section -->
+    <div class="bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8">
+      <h2 class="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-300 mb-4">Post Announcement</h2>
+      
+      <div class="space-y-4">
+        <input type="text" id="announcementTitle" placeholder="Title"
+          class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-blue-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 dark:bg-gray-800 dark:text-white">
+        
+        <textarea id="announcementContent" placeholder="Write your announcement..." rows="4"
+          class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-blue-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 dark:bg-gray-800 dark:text-white resize-vertical"></textarea>
+        
+        <button id="postAnnouncementBtn"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 sm:py-3 rounded-lg shadow transition text-sm sm:text-base dark:bg-blue-700 dark:hover:bg-blue-800">
+          Post Announcement
+        </button>
+        
+        <p id="announceMsg" class="text-green-600 dark:text-green-400 text-xs sm:text-sm break-words"></p>
+      </div>
     </div>
 
-    <div class="bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-6">
-      <h2 class="text-2xl font-bold text-blue-600 dark:text-blue-300 mb-4">Upload File</h2>
-      <input type="file" id="fileInput"
-        class="w-full px-3 py-2 mb-4 border border-blue-200 dark:border-gray-700 rounded-lg dark:bg-gray-800 dark:text-white">
-      <button id="uploadFileBtn"
-        class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg shadow transition dark:bg-blue-700 dark:hover:bg-blue-800">Upload
-        File</button>
-      <p id="fileMsg" class="text-green-600 dark:text-green-400 text-sm mt-3"></p>
+    <!-- File Upload Section -->
+    <div class="bg-white dark:bg-gray-900 shadow-lg rounded-2xl p-4 sm:p-6">
+      <h2 class="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-300 mb-4">Upload File</h2>
+      
+      <div class="space-y-4">
+        <div class="relative">
+          <input type="file" id="fileInput"
+            class="w-full px-3 py-2 text-sm sm:text-base border border-blue-200 dark:border-gray-700 rounded-lg dark:bg-gray-800 dark:text-white file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-700 dark:file:text-blue-300">
+        </div>
+        
+        <button id="uploadFileBtn"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 sm:py-3 rounded-lg shadow transition text-sm sm:text-base dark:bg-blue-700 dark:hover:bg-blue-800">
+          Upload File
+        </button>
+        
+        <p id="fileMsg" class="text-green-600 dark:text-green-400 text-xs sm:text-sm break-words"></p>
+      </div>
     </div>
   </div>
 
@@ -45,7 +66,141 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
 
-  <script src="js/app.js"></script>
+  <script>
+    // Firebase Init
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT_ID.appspot.com",
+        messagingSenderId: "SENDER_ID",
+        appId: "APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+            const isOpen = !mobileMenu.classList.contains("hidden");
+            
+            // Update button icon
+            const svg = mobileMenuBtn.querySelector("svg path");
+            if (isOpen) {
+                svg.setAttribute("d", "M6 18L18 6M6 6l12 12"); // X icon
+            } else {
+                svg.setAttribute("d", "M4 6h16M4 12h16M4 18h16"); // Hamburger icon
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add("hidden");
+                const svg = mobileMenuBtn.querySelector("svg path");
+                svg.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+            }
+        });
+    }
+
+    // Logout functionality (desktop and mobile)
+    const logoutBtn = document.getElementById("logoutBtn");
+    const logoutBtnMobile = document.getElementById("logoutBtnMobile");
+    
+    const handleLogout = async () => {
+        try {
+            await auth.signOut();
+            window.location.href = "index.html";
+        } catch (error) {
+            console.error("Logout error:", error);
+        }
+    };
+
+    if (logoutBtn) logoutBtn.addEventListener("click", handleLogout);
+    if (logoutBtnMobile) logoutBtnMobile.addEventListener("click", handleLogout);
+
+    // Admin Announcements with mobile feedback
+    const postAnnouncementBtn = document.getElementById("postAnnouncementBtn");
+    if (postAnnouncementBtn) {
+        postAnnouncementBtn.addEventListener("click", async () => {
+            const title = document.getElementById("announcementTitle").value.trim();
+            const content = document.getElementById("announcementContent").value.trim();
+            const msgEl = document.getElementById("announceMsg");
+            
+            if (!title || !content) {
+                msgEl.innerText = "Please fill all fields.";
+                msgEl.className = "text-red-600 dark:text-red-400 text-xs sm:text-sm break-words";
+                return;
+            }
+            
+            // Show loading state
+            postAnnouncementBtn.disabled = true;
+            postAnnouncementBtn.innerText = "Posting...";
+            
+            try {
+                await db.collection("announcements").add({
+                    title,
+                    content,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    postedBy: "Admin"
+                });
+                msgEl.innerText = "Announcement posted successfully!";
+                msgEl.className = "text-green-600 dark:text-green-400 text-xs sm:text-sm break-words";
+                
+                // Clear form
+                document.getElementById("announcementTitle").value = "";
+                document.getElementById("announcementContent").value = "";
+            } catch(err) {
+                msgEl.innerText = `Error: ${err.message}`;
+                msgEl.className = "text-red-600 dark:text-red-400 text-xs sm:text-sm break-words";
+            } finally {
+                postAnnouncementBtn.disabled = false;
+                postAnnouncementBtn.innerText = "Post Announcement";
+            }
+        });
+    }
+
+    // Admin File Upload with mobile feedback
+    const uploadFileBtn = document.getElementById("uploadFileBtn");
+    if (uploadFileBtn) {
+        uploadFileBtn.addEventListener("click", async () => {
+            const file = document.getElementById("fileInput").files[0];
+            const msgEl = document.getElementById("fileMsg");
+            
+            if (!file) {
+                msgEl.innerText = "Please select a file first.";
+                msgEl.className = "text-red-600 dark:text-red-400 text-xs sm:text-sm break-words";
+                return;
+            }
+            
+            // Show loading state
+            uploadFileBtn.disabled = true;
+            uploadFileBtn.innerText = "Uploading...";
+            
+            try {
+                const storageRef = storage.ref("files/" + file.name);
+                await storageRef.put(file);
+                msgEl.innerText = `File "${file.name}" uploaded successfully!`;
+                msgEl.className = "text-green-600 dark:text-green-400 text-xs sm:text-sm break-words";
+                
+                // Clear file input
+                document.getElementById("fileInput").value = "";
+            } catch(err) {
+                msgEl.innerText = `Upload error: ${err.message}`;
+                msgEl.className = "text-red-600 dark:text-red-400 text-xs sm:text-sm break-words";
+            } finally {
+                uploadFileBtn.disabled = false;
+                uploadFileBtn.innerText = "Upload File";
+            }
+        });
+    }
+  </script>
 </body>
 
 </html>
