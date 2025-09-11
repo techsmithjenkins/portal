@@ -1,0 +1,9 @@
+class-portal/
+├── index.html          # Login page
+├── change-password.html
+├── dashboard.html
+├── admin.html  #  both index numbers with admin rights are redirected here after login
+├── css/
+│   └── style.css       # Custom overrides / extras
+└── js/
+    └── app.js          # Firebase logic
